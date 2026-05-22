@@ -142,9 +142,33 @@ body {
   font-size: 14px;
 }
 
-.projects li.placeholder {
-  border: 1px dashed var(--border);
-  background: transparent;
+.projects li:has(.project-link) {
+  padding: 0;
+  background: var(--surface-2);
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.projects li:has(.project-link):hover {
+  background: var(--surface);
+  transform: translateX(3px);
+}
+
+.project-link {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.project-link strong .arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  color: var(--accent);
+}
+
+.projects li:has(.project-link):hover .arrow {
+  transform: translateX(4px);
 }
 
 .links {
