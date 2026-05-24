@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Калькулятор доходов и расходов</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Личный бюджет</h1>
+      <p class="subtitle">Учёт доходов и расходов</p>
+    </header>
+
+    <section class="summary">
+      <div class="card card--income">
+        <div class="card__label">Доходы</div>
+        <div class="card__value" id="totalIncome">0 ₽</div>
+      </div>
+      <div class="card card--expense">
+        <div class="card__label">Расходы</div>
+        <div class="card__value" id="totalExpense">0 ₽</div>
+      </div>
+      <div class="card card--balance">
+        <div class="card__label">Баланс</div>
+        <div class="card__value" id="balance">0 ₽</div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Добавить операцию</h2>
+      <form id="txForm" class="form">
+        <div class="form__row">
+          <div class="field">
+            <label>Тип</label>
+            <div class="toggle">
+              <button type="button" class="toggle__btn is-active" data-type="expense">Расход</button>
+              <button type="button" class="toggle__btn" data-type="income">Доход</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form__row form__row--grid">
+          <div class="field">
+            <label for="amount">Сумма</label>
+            <input type="number" id="amount" step="0.01" min="0" placeholder="0.00" required />
+          </div>
+          <div class="field">
+            <label for="category">Категория</label>
+            <select id="category" required></select>
+          </div>
+          <div class="field">
+            <label for="date">Дата</label>
+            <input type="date" id="date" required />
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="description">Описание (необязательно)</label>
+            <input type="text" id="description" placeholder="Например, продукты в Пятёрочке" maxlength="120" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary">Добавить</button>
+      </form>
+    </section>
+
+    <section class="filters">
+      <h2>История операций</h2>
+      <div class="filters__row">
+        <select id="filterType">
+          <option value="all">Все типы</option>
+          <option value="income">Только доходы</option>
+          <option value="expense">Только расходы</option>
+        </select>
+        <select id="filterPeriod">
+          <option value="all">За всё время</option>
+          <option value="month">Текущий месяц</option>
+          <option value="week">Последние 7 дней</option>
+          <option value="today">Сегодня</option>
+        </select>
+        <button id="clearAll" class="btn btn--danger" type="button">Очистить всё</button>
+      </div>
+    </section>
+
+    <section class="transactions">
+      <ul id="txList" class="tx-list"></ul>
+      <p id="emptyState" class="empty">Операций пока нет — добавьте первую выше.</p>
+    </section>
+
+    <section class="chart-section" id="chartSection" hidden>
+      <h2>Расходы по категориям</h2>
+      <div id="chart" class="chart"></div>
+    </section>
+
+    <footer class="footer">
+      <p>Данные хранятся локально в вашем браузере.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
